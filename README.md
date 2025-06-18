@@ -1,11 +1,11 @@
-# Sherwin-Williams Data Analysis with PySpark on Databricks
+# Large-Scale Data Analysis with PySpark on Databricks
 
-This repository contains a data generation script and PySpark analytics for large-scale Sherwin-Williams business data analysis.
+This repository contains a data generation script and PySpark analytics for large-scale business data analysis.
 
 ## Project Structure
 
 - `simulated.py`: Generates multi-GB simulated business data in Parquet format
-- `sherwin_analysis.py`: Production-ready PySpark analytics for Databricks
+- `data_analysis.py`: Production-ready PySpark analytics for Databricks
 
 ## Data Generation
 
@@ -15,7 +15,7 @@ This repository contains a data generation script and PySpark analytics for larg
 python simulated.py
 ```
 
-This will create Parquet files in `./sherwin_williams_data/` directory.
+This will create Parquet files in `./simulated_data/` directory.
 
 ## Databricks Setup and Execution
 
@@ -30,28 +30,28 @@ This will create Parquet files in `./sherwin_williams_data/` directory.
 ### 2. Upload Data to Databricks
 
 1. In your Databricks workspace, go to Data > DBFS
-2. Create a new directory: `/FileStore/sherwin_williams_data`
+2. Create a new directory: `/FileStore/simulated_data`
 3. Upload the generated Parquet files:
 
 ```bash
-databricks fs cp -r ./sherwin_williams_data/ dbfs:/FileStore/sherwin_williams_data/
+databricks fs cp -r ./simulated_data/ dbfs:/FileStore/simulated_data/
 ```
 
 ### 3. Upload Analysis Script
 
 1. In Databricks workspace, create a new directory for the project
-2. Upload `sherwin_analysis.py` to this directory
+2. Upload `data_analysis.py` to this directory
 3. Create a new notebook and import the analytics class:
 
 ```python
 # Import analytics class
-from sherwin_analysis import SherwinWilliamsAnalytics
+from data_analysis import LargeScaleAnalytics
 
 # Initialize analytics
-analytics = SherwinWilliamsAnalytics(spark)
+analytics = LargeScaleAnalytics(spark)
 
 # Load data
-analytics.load_transactions("/dbfs/FileStore/sherwin_williams_data")
+analytics.load_transactions("/dbfs/FileStore/simulated_data")
 
 # Run analyses
 basic_stats = analytics.basic_stats()

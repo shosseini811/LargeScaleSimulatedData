@@ -5,7 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+simulated_data/
 # Distribution / packaging
 .Python
 build/
@@ -192,3 +192,6 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Generated data
+simulated_data/

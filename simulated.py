@@ -7,14 +7,14 @@ import random
 from typing import Dict, List, Tuple
 import json
 
-class SherwinWilliamsDataGenerator:
-    """Generate large-scale realistic data for Sherwin-Williams business scenarios"""
+class LargeScaleDataGenerator:
+    """Generate large-scale realistic data for business scenarios"""
     
     def __init__(self):
         self.setup_business_data()
     
     def setup_business_data(self):
-        """Initialize Sherwin-Williams specific business data"""
+        """Initialize business-specific data"""
         
         # Product categories and realistic SKUs
         self.product_categories = {
@@ -47,7 +47,7 @@ class SherwinWilliamsDataGenerator:
                 'seasonal_factor': 1.0
             },
             'Tools & Supplies': {
-                'brands': ['Purdy', 'Wooster', 'SW Brushes', 'Contractor Grade'],
+                'brands': ['Premium', 'Professional', 'Standard', 'Contractor Grade'],
                 'sheens': ['N/A'],
                 'sizes': ['Each', 'Pack', 'Case'],
                 'price_range': (5, 150),
@@ -145,7 +145,7 @@ class SherwinWilliamsDataGenerator:
                 base_price = random.uniform(*cat_data['price_range'])
                 
                 products.append({
-                    'sku': f'SW{sku_id}',
+                    'sku': f'P{sku_id}',
                     'product_name': product_name,
                     'category': category,
                     'brand': brand,
@@ -289,14 +289,14 @@ class SherwinWilliamsDataGenerator:
         
         return f"Generated chunk {chunk_id}: {len(transactions):,} transactions, {len(transaction_items):,} items"
 
-    def generate_massive_sherwin_dataset(self, 
+    def generate_massive_dataset(self, 
                                        total_transactions: int = 500_000_000,  # 500M transactions
-                                       base_path: str = "./sherwin_data",
+                                       base_path: str = "./simulated_data",
                                        start_date: datetime = datetime(2020, 1, 1),
                                        end_date: datetime = datetime(2024, 12, 31)) -> Dict:
-        """Generate massive Sherwin-Williams dataset with realistic business patterns"""
+        """Generate massive dataset with realistic business patterns"""
         
-        print("🎨 Generating Sherwin-Williams Large-Scale Dataset")
+        print("🎨 Generating Large-Scale Dataset")
         print(f"Target: {total_transactions:,} transactions (~{total_transactions * 0.1 / 1000000:.0f}GB estimated)")
         
         os.makedirs(base_path, exist_ok=True)
@@ -464,13 +464,13 @@ class SherwinWilliamsDataGenerator:
 # Usage example
 if __name__ == "__main__":
     # Initialize generator
-    generator = SherwinWilliamsDataGenerator()
+    generator = LargeScaleDataGenerator()
     
     # Generate massive dataset
     # This will create ~50GB of data with 500M transactions
-    dataset_info = generator.generate_massive_sherwin_dataset(
+    dataset_info = generator.generate_massive_dataset(
         total_transactions=100_000_000,  # Start smaller for testing: 100M transactions (~10GB)
-        base_path="./sherwin_williams_data",
+        base_path="./simulated_data",
         start_date=datetime(2022, 1, 1),
         end_date=datetime(2024, 12, 31)
     )
