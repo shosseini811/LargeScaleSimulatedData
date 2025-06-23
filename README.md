@@ -1,11 +1,15 @@
-# Large-Scale Data Analysis with PySpark on Databricks
+# Large-Scale Data Analysis with PySpark
 
-This repository contains a data generation script and PySpark analytics for large-scale business data analysis.
+This repository contains a data generation script and PySpark analytics for large-scale business data analysis, optimized for both AWS and Databricks platforms.
 
 ## Project Structure
 
 - `simulated.py`: Generates multi-GB simulated business data in Parquet format
 - `data_analysis.py`: Production-ready PySpark analytics for Databricks
+- `aws_data_analysis.py`: AWS-optimized PySpark analytics for EMR/EC2
+- `aws_glue_analysis.py`: AWS Glue-specific analytics script
+- `deploy_to_aws.sh`: Automated deployment script for AWS
+- `AWS_DEPLOYMENT_GUIDE.md`: Comprehensive AWS deployment guide
 
 ## Data Generation
 
@@ -16,6 +20,32 @@ python simulated.py
 ```
 
 This will create Parquet files in `./simulated_data/` directory.
+
+## Quick Start on AWS 🚀
+
+### Option 1: Automated Deployment (Recommended)
+
+Use the provided deployment script for quick setup:
+
+```bash
+# Make the script executable
+chmod +x deploy_to_aws.sh
+
+# Deploy with EMR (recommended for large-scale processing)
+./deploy_to_aws.sh -b your-unique-bucket-name -s medium -t emr
+
+# Deploy with AWS Glue (serverless option)
+./deploy_to_aws.sh -b your-unique-bucket-name -s small -t glue
+```
+
+### Option 2: Manual Setup
+
+See the comprehensive [AWS Deployment Guide](AWS_DEPLOYMENT_GUIDE.md) for detailed instructions on:
+- Amazon EMR setup
+- AWS Glue configuration  
+- SageMaker processing
+- EC2 with Docker
+- Cost optimization strategies
 
 ## Databricks Setup and Execution
 
